@@ -1,0 +1,81 @@
+/* ============================================
+   DARK MONOCHROME DESIGN SYSTEM (B&W)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* ── Monochrome Palette ── */
+    --bg-main: #000000;
+    --bg-alt: #0a0a0a;
+    --bg-surface: #111111;
+    --bg-dark: #000000;
+    
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --text-muted: #666666;
+    --text-on-dark: #ffffff;
+
+    /* Accents (Greyscale) */
+    --accent-dark: #ffffff;
+    --accent-light: #000000;
+    --border-main: #ffffff;
+    --border-light: #222222;
+    
+    /* Branch Indicators */
+    --branch-a: #ffffff;
+    --branch-b: #888888;
+    --branch-c: #444444;
+
+    /* Radii - Sharp & Minimal */
+    --radius-sm: 0px;
+    --radius-md: 6px;
+    --radius-lg: 12px;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition-smooth: all 0.3s ease;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+/* ── Keyframes ── */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

@@ -1,0 +1,153 @@
+/* ============================================
+   DARK MONOCHROME TREE STYLES (B&W)
+   ============================================ */
+
+.neon-tree-wrapper {
+    width: 100%;
+    color: #ffffff;
+}
+
+.tree-top-bar {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #222;
+}
+
+.tree-heading {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.tree-viewing {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.tree-viewing strong {
+    color: #ffffff;
+}
+
+.tree-back-btn {
+    margin-left: 1.25rem;
+    background: #222222;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    transition: var(--transition-fast);
+}
+
+.tree-back-btn:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+.tree-scroll-area {
+    overflow-x: auto;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tree-center {
+    display: inline-block;
+}
+
+/* Nodes */
+.neon-node {
+    min-width: 120px;
+    height: 70px;
+    border: none;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 900;
+    font-size: 0.7rem;
+    text-transform: lowercase; /* Matching the user's request format sudharsan@07 */
+    position: relative;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    padding: 0 12px;
+}
+
+.neon-root {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    height: 80px;
+}
+
+.neon-expandable:hover {
+    transform: translateY(-4px);
+    background: #222222;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.neon-pos-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ffffff;
+    color: #000000;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 950;
+    border-radius: 50%;
+    border: 2px solid #000000;
+}
+
+.neon-node-info {
+    line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    text-align: center;
+}
+
+.neon-placeholder {
+    width: 64px;
+    height: 64px;
+    background: #0d0d0d;
+    border: 2px dashed #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    border-radius: 12px;
+}
+
+/* Connectors */
+.neon-vline {
+    width: 2px;
+    height: 36px;
+    background: #222222;
+    margin: 0 auto;
+}
+
+.neon-hline-full {
+    background: #222222;
+}
+
+.neon-hline-empty {
+    background: transparent;
+}
+
+.neon-node-cell {
+    padding: 0 2rem;
+}
