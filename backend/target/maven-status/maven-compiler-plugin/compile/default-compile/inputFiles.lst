@@ -8,6 +8,7 @@ C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\co
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\dto\RegisterRequest.java
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\dto\TreeNodeDTO.java
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\dto\UserProfileDTO.java
+C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\exception\GlobalExceptionHandler.java
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\model\TreePosition.java
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\model\TriLinkRelationship.java
 C:\Users\DELL\Downloads\referral-system\referral-system\backend\src\main\java\com\example\trilink\model\User.java

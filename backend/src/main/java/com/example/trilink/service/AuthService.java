@@ -15,12 +15,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
 public class AuthService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -45,7 +49,9 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
+        logger.info("Attempting to register user: {}", request.getUsername());
         if (userRepository.existsByUsername(request.getUsername())) {
+            logger.warn("Registration failed: Username {} already exists", request.getUsername());
             throw new RuntimeException("Username already exists");
         }
 
@@ -56,15 +62,22 @@ public class AuthService {
                 .uid(generateRandomUid())
                 .build();
         User savedUser = userRepository.save(user);
-        if (savedUser == null)
+        if (savedUser == null) {
+            logger.error("Failed to save user entity for {}", request.getUsername());
             throw new RuntimeException("Failed to save user");
+        }
         user = savedUser;
+        logger.info("User {} saved with ID: {}", user.getUsername(), user.getId());
 
         // 2. Determine Tree Position
         User referrer = null;
         if (request.getTrilinkUid() != null && !request.getTrilinkUid().isEmpty()) {
+            logger.info("Searching for referrer with UID: {}", request.getTrilinkUid());
             referrer = userRepository.findByUid(request.getTrilinkUid())
-                    .orElseThrow(() -> new RuntimeException("Referrer UID invalid"));
+                    .orElseThrow(() -> {
+                        logger.warn("Invalid referrer UID: {}", request.getTrilinkUid());
+                        return new RuntimeException("Referrer UID invalid");
+                    });
         }
 
         if (referrer != null) {
