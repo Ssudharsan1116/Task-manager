@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TreePositionRepository extends JpaRepository<TreePosition, Long> {
-    Optional<TreePosition> findByUserId(Long userId);
+    Optional<TreePosition> findByUser(User user);
 
-    List<TreePosition> findByParentId(Long parentId);
+    List<TreePosition> findByParent(User parent);
 
-    Optional<TreePosition> findByParentIdAndPositionName(Long parentId, String positionName);
+    Optional<TreePosition> findByParentAndPositionName(User parent, String positionName);
 
     List<TreePosition> findByLevel(Integer level);
 }

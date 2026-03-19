@@ -23,7 +23,7 @@ public class TreeService {
         User root = userRepository.findByUid(uid)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        TreePosition rootPos = treePositionRepository.findByUserId(root.getId())
+        TreePosition rootPos = treePositionRepository.findByUser(root)
                 .orElse(null);
 
         return buildTree(root, rootPos, 3); // 3×3 spec: limit depth to 3 levels
@@ -33,7 +33,7 @@ public class TreeService {
         if (maxDepth < 0)
             return null;
 
-        List<TreePosition> childPositions = treePositionRepository.findByParentId(user.getId());
+        List<TreePosition> childPositions = treePositionRepository.findByParent(user);
         // Sort by position name to ensure A, B, C order
         childPositions.sort(java.util.Comparator.comparing(TreePosition::getPositionName));
         List<TreeNodeDTO> children = childPositions.stream()

@@ -75,7 +75,7 @@ public class AuthService {
                 treePositionRepository.save(placement);
 
                 // Track social relationship (who referred whom)
-                long count = trilinkRelationshipRepository.countByReferrerId(referrer.getId());
+                long count = trilinkRelationshipRepository.countByReferrer(referrer);
                 TriLinkRelationship rel = TriLinkRelationship.builder()
                         .referrer(referrer)
                         .referred(user)

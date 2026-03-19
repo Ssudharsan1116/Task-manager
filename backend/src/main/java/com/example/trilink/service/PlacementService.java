@@ -49,7 +49,7 @@ public class PlacementService {
 
             // Check Position A for ALL nodes at this level
             for (User parent : currentLevelNodes) {
-                Optional<TreePosition> posA = treePositionRepository.findByParentIdAndPositionName(parent.getId(), "A");
+                Optional<TreePosition> posA = treePositionRepository.findByParentAndPositionName(parent, "A");
                 if (posA.isEmpty()) {
                     return createPlaceholder(parent, "A");
                 }
@@ -57,7 +57,7 @@ public class PlacementService {
 
             // Check Position B for ALL nodes at this level
             for (User parent : currentLevelNodes) {
-                Optional<TreePosition> posB = treePositionRepository.findByParentIdAndPositionName(parent.getId(), "B");
+                Optional<TreePosition> posB = treePositionRepository.findByParentAndPositionName(parent, "B");
                 if (posB.isEmpty()) {
                     return createPlaceholder(parent, "B");
                 }
@@ -65,7 +65,7 @@ public class PlacementService {
 
             // Check Position C for ALL nodes at this level
             for (User parent : currentLevelNodes) {
-                Optional<TreePosition> posC = treePositionRepository.findByParentIdAndPositionName(parent.getId(), "C");
+                Optional<TreePosition> posC = treePositionRepository.findByParentAndPositionName(parent, "C");
                 if (posC.isEmpty()) {
                     return createPlaceholder(parent, "C");
                 }
@@ -73,7 +73,7 @@ public class PlacementService {
 
             // If level is full, add children to queue for next level (in order A, B, C)
             for (User parent : currentLevelNodes) {
-                List<TreePosition> children = treePositionRepository.findByParentId(parent.getId());
+                List<TreePosition> children = treePositionRepository.findByParent(parent);
                 // Sort children by position name to maintain A, B, C order
                 children.sort(Comparator.comparing(TreePosition::getPositionName));
                 children.forEach(cp -> queue.add(cp.getUser()));
@@ -83,7 +83,7 @@ public class PlacementService {
     }
 
     private TreePosition createPlaceholder(User parent, String position) {
-        TreePosition parentPos = treePositionRepository.findByUserId(parent.getId()).orElse(null);
+        TreePosition parentPos = treePositionRepository.findByUser(parent).orElse(null);
         int level = (parentPos != null) ? parentPos.getLevel() + 1 : 1;
 
         return TreePosition.builder()

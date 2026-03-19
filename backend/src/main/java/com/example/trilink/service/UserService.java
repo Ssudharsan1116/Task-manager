@@ -1,7 +1,6 @@
 package com.example.trilink.service;
 
 import com.example.trilink.dto.UserProfileDTO;
-import com.example.trilink.model.TriLinkRelationship;
 import com.example.trilink.model.TreePosition;
 import com.example.trilink.model.User;
 import com.example.trilink.repository.TriLinkRelationshipRepository;
@@ -24,10 +23,10 @@ public class UserService {
 
     public UserProfileDTO getUserProfile(String username) {
         User user = userRepository.findByUsername(username).orElseThrow();
-        TreePosition pos = treePositionRepository.findByUserId(user.getId()).orElseThrow();
+        TreePosition pos = treePositionRepository.findByUser(user).orElseThrow();
 
         String referrerUsername = pos.getParent() != null ? pos.getParent().getUsername() : "ROOT";
-        long totaltrilinks = trilinkRelationshipRepository.countByReferrerId(user.getId());
+        long totaltrilinks = trilinkRelationshipRepository.countByReferrer(user);
 
         return UserProfileDTO.builder()
                 .username(user.getUsername())

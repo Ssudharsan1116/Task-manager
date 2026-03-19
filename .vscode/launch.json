@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run TriLinkApplication",
+            "request": "launch",
+            "mainClass": "com.example.trilink.TriLinkApplication",
+            "projectName": "trilink-system",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "dev",
+                "MYSQLHOST": "autorack.proxy.rlwy.net",
+                "MYSQLPORT": "27306",
+                "MYSQLDATABASE": "railway",
+                "MYSQLUSER": "root",
+                "MYSQLPASSWORD": "rMPUVgzSshxTuiIhPIHWzkEwtKIvJPfd"
+            }
+        }
+    ]
+}

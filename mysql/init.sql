@@ -1,5 +1,4 @@
-CREATE DATABASE IF NOT EXISTS referral_db;
-USE referral_db;
+-- Targeting the default Railway database Instead
 
 -- Users table: core identity and auth
 CREATE TABLE IF NOT EXISTS users (
