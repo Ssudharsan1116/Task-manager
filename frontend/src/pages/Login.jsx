@@ -20,7 +20,8 @@ const Login = () => {
             login({ username: response.data.username, uid: response.data.uid }, response.data.token);
             navigate('/dashboard');
         } catch (err) {
-            setError(err.response?.data?.message || err.response?.data || 'Invalid username or password');
+            const msg = err.response?.data?.message || (typeof err.response?.data === 'string' ? err.response.data : null) || 'Invalid username or password';
+            setError(msg);
         }
     };
 

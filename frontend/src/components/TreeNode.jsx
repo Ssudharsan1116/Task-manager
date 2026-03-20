@@ -3,18 +3,16 @@ import React, { useState } from 'react';
 const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth = 0, branch = null }) => {
     const [expanded, setExpanded] = useState(depth < 1);
     const currentBranch = depth === 0 ? null : (depth === 1 ? position : branch);
-    const hasChildren = depth < 2;
+    const hasChildren = depth < 3;
 
     // Empty placeholder for unfilled positions
     if (!user) {
         return (
-            <td className={`neon-node-td ${branch ? `neon-branch-${branch.toLowerCase()}` : ''}`}>
-                <div className="neon-node-cell">
-                    <div className="neon-placeholder">
-                        <span>{position}</span>
-                    </div>
+            <div className="neon-node-cell">
+                <div className="neon-placeholder">
+                    <span>{position}</span>
                 </div>
-            </td>
+            </div>
         );
     }
 
@@ -25,12 +23,13 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
             onReset();
             return;
         }
-        if (depth === 1 && onNodeClick) {
-            onNodeClick(user.uid);
-            return;
-        }
-        if (hasChildren) {
+        
+        // If it can be expanded, toggle it. 
+        // If it's already at max depth or has no children, navigate to focus on it.
+        if (hasChildren && user.children && user.children.length > 0) {
             setExpanded(!expanded);
+        } else if (!isRoot && onNodeClick) {
+            onNodeClick(user.uid);
         }
     };
 
@@ -48,9 +47,8 @@ const TreeNode = ({ user, position, isRoot = false, onNodeClick, onReset, depth 
                                 onClick={handleClick}
                                 title={hasChildren ? (expanded ? 'Click to collapse' : 'Click to expand') : ''}
                             >
-                                <span className="neon-node-info">
-                                    {user.username}@{user.uid}
-                                </span>
+                                <span className="neon-node-username">{user.username}</span>
+                                <span className="neon-node-uid">#{user.uid}</span>
                                 {position && <span className="neon-pos-badge">{position}</span>}
                             </div>
                         </div>

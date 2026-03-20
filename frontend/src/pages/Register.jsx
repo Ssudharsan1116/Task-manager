@@ -33,7 +33,8 @@ const Register = () => {
             login({ username: response.data.username, uid: response.data.uid }, response.data.token);
             navigate('/dashboard');
         } catch (err) {
-            setError(err.response?.data?.message || 'Registration failed');
+            const msg = err.response?.data?.message || (typeof err.response?.data === 'string' ? err.response.data : null) || 'Registration failed';
+            setError(msg);
         }
     };
 

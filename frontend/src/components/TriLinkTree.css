@@ -111,13 +111,22 @@
     border: 2px solid #000000;
 }
 
-.neon-node-info {
-    line-height: 1.2;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    text-align: center;
+.neon-node-username {
+    display: block;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin-bottom: 2px;
+}
+
+.neon-node-uid {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .neon-placeholder {
