@@ -99,6 +99,11 @@
     border-radius: var(--radius-md);
 }
 
+.form-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
 .form-group input:focus {
     outline: none;
     background: #222222;
@@ -174,6 +179,20 @@
 
 .nav-link:hover, .nav-link.active {
     color: #ffffff;
+}
+ 
+.referral-btn {
+    margin-left: auto;
+    background: #111111;
+    border: 1px solid #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+ 
+.referral-btn:hover {
+    background: #222222;
+    border-color: #555;
 }
 
 .navbar-user {

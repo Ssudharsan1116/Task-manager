@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthLayout from '../components/AuthLayout';
 import apiClient from '../api/apiClient';
 import { User, Lock, Link2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -12,6 +12,14 @@ const Register = () => {
     const [error, setError] = useState('');
     const { login } = useAuth();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        const ref = searchParams.get('ref');
+        if (ref) {
+            settrilinkUid(ref);
+        }
+    }, [searchParams]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +53,7 @@ const Register = () => {
                         <input
                             id="reg-username"
                             type="text"
-                            placeholder="Choose a username"
+                            placeholder=""
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
@@ -59,7 +67,7 @@ const Register = () => {
                         <input
                             id="reg-password"
                             type="password"
-                            placeholder="Create a password"
+                            placeholder=""
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -73,7 +81,7 @@ const Register = () => {
                         <input
                             id="trilink-uid"
                             type="text"
-                            placeholder="Optional — enter referrer's UID"
+                            placeholder="Referral Code (Optional)"
                             value={trilinkUid}
                             onChange={(e) => settrilinkUid(e.target.value)}
                         />

@@ -1,7 +1,16 @@
-import React from 'react';
-import { LogOut, Network, Compass } from 'lucide-react';
+import React, { useState } from 'react';
+import { LogOut, Network, Compass, Link as LinkIcon, Check } from 'lucide-react';
 
 const Sidebar = ({ user, logout, onNavigateToSelf }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopyReferral = () => {
+        const referralLink = `${window.location.origin}/register?ref=${user.uid}`;
+        navigator.clipboard.writeText(referralLink);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
         <nav className="top-navbar">
             {/* Nav Links */}
@@ -13,6 +22,10 @@ const Sidebar = ({ user, logout, onNavigateToSelf }) => {
                 <button className="nav-link" onClick={onNavigateToSelf}>
                     <Compass size={16} />
                     My Position
+                </button>
+                <button className="nav-link referral-btn" onClick={handleCopyReferral}>
+                    {copied ? <Check size={16} /> : <LinkIcon size={16} />}
+                    {copied ? 'Copied!' : 'Copy Link'}
                 </button>
             </div>
 
