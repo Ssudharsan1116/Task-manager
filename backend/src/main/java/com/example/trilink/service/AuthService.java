@@ -81,8 +81,8 @@ public class AuthService {
         }
 
         if (referrer != null) {
-            // Use global placement order (NOT referrer-based)
-            TreePosition placement = placementService.findNextPlacement();
+            // Use referrer-relative placement (Fills referrer's subtree first)
+            TreePosition placement = placementService.findNextPlacement(referrer);
             if (placement != null) {
                 placement.setUser(user);
                 treePositionRepository.save(placement);

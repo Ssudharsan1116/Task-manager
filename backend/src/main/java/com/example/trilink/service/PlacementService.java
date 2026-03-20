@@ -20,7 +20,7 @@ public class PlacementService {
 
     /**
      * Finds the next available position in the tree using Slot-Major BFS
-     * starting from the GLOBAL ROOT (level 0).
+     * starting from the PREFERRED ROOT (usually the referrer).
      *
      * The fixed placement order per the v3 spec:
      * Step 1: A→A, Step 2: B→A, Step 3: C→A,
@@ -28,17 +28,20 @@ public class PlacementService {
      * Step 7: A→C, Step 8: B→C, Step 9: C→C
      */
     @Transactional
-    public TreePosition findNextPlacement() {
-        // Always start from the global root
-        List<TreePosition> roots = treePositionRepository.findByLevel(0);
-        if (roots.isEmpty()) {
-            throw new RuntimeException("No root user found. Register a root user first.");
+    public TreePosition findNextPlacement(User preferredRoot) {
+        User startNode = preferredRoot;
+
+        // If no preferred root provided, try to find the global root
+        if (startNode == null) {
+            List<TreePosition> roots = treePositionRepository.findByLevel(0);
+            if (roots.isEmpty()) {
+                return null; // Let the caller handle first user registration
+            }
+            startNode = roots.get(0).getUser();
         }
-        TreePosition rootPos = roots.get(0);
-        User rootUser = rootPos.getUser();
 
         Queue<User> queue = new LinkedList<>();
-        queue.add(rootUser);
+        queue.add(startNode);
 
         while (!queue.isEmpty()) {
             int levelSize = queue.size();

@@ -24,6 +24,7 @@ com\example\trilink\model\TreePosition$TreePositionBuilder.class
 com\example\trilink\model\TreePosition.class
 com\example\trilink\security\UserDetailsServiceImpl.class
 com\example\trilink\model\TriLinkRelationship.class
+com\example\trilink\exception\GlobalExceptionHandler.class
 com\example\trilink\controller\AuthController.class
 com\example\trilink\TriLinkApplication.class
 com\example\trilink\repository\TreePositionRepository.class
